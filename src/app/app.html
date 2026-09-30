@@ -1,3 +1,40 @@
+<style>
+    .logo-img {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+    }
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+    }
+    .brand-title {
+        font-family: 'Impact', 'Arial Black', sans-serif;
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: 10px;
+    }
+    .brand-subtitle {
+        font-family: 'Roboto', 'Arial', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 3px;
+    }
+</style>
+<header class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg py-3">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
+      <div class="logo-wrapper">
+        <img src="icon-logo.jpeg" alt="Logo Frailes Basquet" class="logo-img">
+      </div>
+      <div class="brand-text">
+        <h1 class="brand-title m-0">FRAILES</h1>
+        <span class="brand-subtitle">BÁSQUETBOL CLUB</span>
+      </div>
+    </a>
+  </div>
+</header>
 <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 16px; box-sizing: border-box;">
   <img
     src="../../public/WhatsApp Image 2026-09-09 at 1.44.07 PM.jpeg"
@@ -11,3 +48,5 @@
     &copy; 2026 Frailes Basquet. Todos los derechos reservados.
   </p>
 </footer>
+
+<router-outlet></router-outlet>
