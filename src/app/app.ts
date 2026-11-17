@@ -1,12 +1,43 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { ContactoService, Contacto } from "./services/contacto";
 
-@Component({
-  imports: [RouterOutlet],
+@Component ({
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule], 
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
-export class App {
 
+export class AppComponent implements OnInit{
+  contactoFrailes: Contacto | null = null;
+  constructor (private contactoService: ContactoService) {}
+  ngOnInit(): void {
+    this.obtenerDatosContacto();
+      }
+
+      obtenerDatosContacto(): void {
+        this.contactoService.getContactoFrailes().subscribe({
+          next: (data) => {
+            this.contactoFrailes = {
+              ...data,
+              instagram:'https://www.instagram.com/frailesbasketball?srtk=ODhxdmFpbmIxbTJ2',
+              facebook:'https://www.facebook.com/share/1Woi2vPbRn/'
+            };
+            console.log ('Datos cargados del backend con éxito, data');
+          },
+      error: (err) => {
+        console.warn('Backend aun no disponible. Usando datos locales.');
+        this.contactoFrailes = {
+          idContacto: 3,
+          estatus: 1,
+          nombre: 'Frailes Básquetbol',
+          instagram: 'https://www.instagram.com/frailesbasketball?srtk=ODhxdmFpbmIxbTJ2',
+          facebook: 'https://www.facebook.com/share/1Woi2vPbRn/'
+        };
+      }
+    });
+  }
 }

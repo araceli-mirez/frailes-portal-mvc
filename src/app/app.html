@@ -21,6 +21,15 @@
         font-weight: 500;
         letter-spacing: 3px;
     }
+    .custom-hero-img{
+      max-width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+    .footer-text{
+      font-size: clamp(14px, 2vw, 16px);
+    }
 </style>
 <header class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg py-3">
   <div class="container d-flex align-items-center justify-content-between">
@@ -35,16 +44,50 @@
     </a>
   </div>
 </header>
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 16px; box-sizing: border-box;">
-  <img
-    src="../../public/WhatsApp Image 2026-09-09 at 1.44.07 PM.jpeg"
-    alt="frailes"
-    style="max-width: 100%; height: auto; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);"
-  />
+<div class="d-flex justify-content-center align-items-center w-100 min-vh-80 p-3 bg-light">
+  <div class="position-relative d-inline-block">
+    <img src="pagina_en_construccion.jpeg" alt="frailes" class="img-fluid rounded shadow-sm custom-hero-img"/>
+    <button type="button" class="btn btn-primary position-absolute bottom-0 end-0 m-3 shadow" (click)="obtenerDatosContacto()" data-bs-toggle="modal" data-bs-target="#modalContacto" style="background-color: orangered;"> Contacto </button>
+  </div>
+</div>
+<div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="modalContactoLabel" aria-hidden="true"> 
+ <div class="modal-dialog modal-dialog-centered"> 
+  <div class="modal-content text-start">
+    <div class="modal-header bg-black text-white"> 
+      <h5 class="modal-title" id="modalContactoLabel">CONTACTO FRAILES BASQUET</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <ul class="list-group list-group-flush" *ngIf="contactoFrailes; else cargandoTpl">
+        <li class="list-group-item">
+          <strong>Nombre: </strong>{{contactoFrailes.nombre}}
+        </li>
+        <li class="list-group-item">
+          <strong>Estatus: </strong>{{contactoFrailes.estatus}}
+        </li>
+        <li class="list-group-item">
+          <strong>Instagram: </strong><a [href]="contactoFrailes.instagram" target="_blank" rel="noopener noreferrer">Visitar Instagram</a>
+        </li>
+        <li class="list-group-item"> 
+          <strong>Facebook: </strong><a [href]="contactoFrailes.facebook" target="_blank" rel="noopener noreferrer">Visitar Facebook</a>
+        </li>
+      </ul>
+      <ng-template #cargandoTpl>
+        <div class="text-center p-3">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="mt-2 mb-0">Cargando contacto de Frailes</p>
+        </div>
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    </div>
+  </div>
+ </div>
 </div>
 
-<footer style="text-align: center; padding: 20px 10px; width: 100%; box-sizing: border-box;">
-  <p style="margin: 0; font-size: clamp(14px, 2vw, 16px); color: #333;">
+<footer class="text-center p-4 w-100 border-top bg-white">
+  <p class="m-0 text-muted footer-text">
     &copy; 2026 Frailes Basquet. Todos los derechos reservados.
   </p>
 </footer>
